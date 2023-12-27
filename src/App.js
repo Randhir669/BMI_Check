@@ -77,7 +77,7 @@ function App() {
       setBmihealth('0.40')
       setshowsuggestion(true)
       setadviceclip('./tootgya.mp4')
-      setadvice('Main to toot gya yaar')
+      setadvice('Main to toot gya yaar!')
     } else if (calculatedBmi > 30 && calculatedBmi <= 35) {
       setHealth('Obese Class I')
       setBmihealth('0.6')
