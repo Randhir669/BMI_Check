@@ -36,3 +36,88 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* src/BmiCalculator.css */
+
+.bmi-calculator {
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.input-group {
+  display: flex;
+  justify-content: space-between;
+}
+
+input {
+  flex: 1;
+  margin-right: 10px;
+  padding: 5px;
+}
+
+button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}
+
+p {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.bgwall{
+  background: url('./bg.jpg');
+  height:130vh
+  
+}
+.bottom-popup {
+  bottom: 0;
+  top: auto;
+  transform: translateY(0%);
+}
+
+.setleft{
+  justify-content: left;
+  display: flex;
+
+}
+.setmiddle{
+  justify-content: center;
+  display: flex;
+
+}
+
+.sliding-card{
+  transform: translateX(0);
+}
+
+.card-slide-enter {
+  opacity: 0;
+  transform: translateY(-50px);
+}
+
+.card-slide-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s, transform 1s;
+}
+
+.card-slide-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-slide-exit-active {
+  opacity: 0;
+  transform: translateY(-50px);
+  transition: opacity 1s, transform 1s;
+}
