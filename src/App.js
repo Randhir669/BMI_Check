@@ -26,6 +26,15 @@ function App() {
   // eslint-disable-next-line
   const [showbmicomp, setshowbmicomp] = useState(true)
   const MySwal = withReactContent(Swal)
+  const htmlContent = ReactDOMServer.renderToString(
+    <ReactPlayer
+      url={process.env.PUBLIC_URL + '/validation.mp4'}
+      width="100%"
+      height="80%"
+      controls={true}
+      playing={true}
+    />
+  );
 
 
   const calculateBmi = () => {
@@ -121,16 +130,6 @@ function App() {
 
   function nosuggestion() {
 
-
-    const htmlContent = ReactDOMServer.renderToString(
-      <ReactPlayer
-        url={process.env.PUBLIC_URL + '/validation.mp4'}
-        width="100%"
-        height="80%"
-        controls={true}
-        playing={true}
-      />
-    );
     Swal.fire({
       title: "Are u Sure?",
       icon: "warning",
