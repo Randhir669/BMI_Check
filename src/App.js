@@ -6,6 +6,7 @@ import 'react-circular-progressbar/dist/styles.css';
 import GaugeChart from 'react-gauge-chart'
 import { CSSTransition } from 'react-transition-group';
 import Swal from 'sweetalert2'
+import ReactDOMServer from 'react-dom/server';
 import withReactContent from 'sweetalert2-react-content'
 import ReactPlayer from 'react-player';
 
@@ -39,7 +40,10 @@ function App() {
           controls={true}
           playing={true}
         /></i>,
-        icon: 'warning'
+        icon: 'warning',
+        customClass: {
+          popup: 'custom-popup-class', // Add your custom class here
+        },
       })
       return
     }
@@ -100,7 +104,7 @@ function App() {
 
   };
 
-  function clearAll() {
+  function clearAll(){
     setAge('')
     setHeight('')
     setWeight('')
@@ -112,7 +116,44 @@ function App() {
     setdisplayclass('row mx-1 setmiddle')
     setshowbmicomp(false)
     setshowbmicomp(true)
+
   }
+
+  function nosuggestion() {
+
+
+    const htmlContent = ReactDOMServer.renderToString(
+      <ReactPlayer
+        url={process.env.PUBLIC_URL + '/validation.mp4'}
+        width="100%"
+        height="80%"
+        controls={true}
+        playing={true}
+      />
+    );
+    Swal.fire({
+      title: "Are u Sure?",
+      icon: "warning",
+      html:htmlContent,
+      showConfirmButton: true,
+      showCancelButton: true,
+      confirmButtonText: "OK",
+      cancelButtonText: "Cancel",
+      customClass: {
+        popup: 'custom-popup-class', // Add your custom class here
+      },
+  }).then((result) => {
+
+      if (result.isConfirmed) {
+        setshowsuggestion(false)
+        setdisplayclass('row mx-1 setmiddle')
+       
+      } else {
+
+      }
+   
+  })
+}
 
   function handleonsuggestion() {
 
@@ -122,6 +163,13 @@ function App() {
     setshowbmicomp(true)
 
   }
+
+  function closecard(){
+    setshowresult(false)
+    setdisplayclass('row mx-1 setmiddle')
+  }
+
+
 
   const chartData = [
     { value: 0.12, label: 'Thinness' },
@@ -203,7 +251,7 @@ function App() {
                   <p>Need Suggestions?</p>
                   <span>
                     <button className='btn btn-success' onClick={handleonsuggestion}>Yes</button>&nbsp;&nbsp;
-                    <button className='btn btn-danger' onClick={clearAll}>No</button>
+                    <button className='btn btn-danger' onClick={nosuggestion}>No</button>
 
                   </span>
                 </>
@@ -222,6 +270,14 @@ function App() {
         >
           <div className='col-sm-4 '>
             <div className='card' style={{ marginTop: '50px' }}>
+            <button
+          type="button"
+          className="btn btn-default"
+          aria-label="Close"
+          onClick={closecard} // Replace with your close logic
+          style={{ position: 'absolute', top: '5px', right: '10px', zIndex: 1 }}
+        ><b>X</b>
+        </button>
               <h5 className="card-header" style={{ textAlign: 'center' }}>{advice} {advice === 'Stop' && '✊💦💦'} {advice ==="CHAD Cant Say Any Thing!" && "👑👑"}</h5>
               <div className='cardbody'>
                 <ReactPlayer

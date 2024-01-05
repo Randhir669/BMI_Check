@@ -121,3 +121,8 @@ p {
   transform: translateY(-50px);
   transition: opacity 1s, transform 1s;
 }
+
+.custom-popup-class {
+  width: 300px;
+  height: 500px; 
+}
